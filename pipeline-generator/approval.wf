@@ -1,0 +1,11 @@
+- type: APPROVAL
+  disable: false
+  name: 'Approval'
+  parallel: false
+  properties:
+    userGroups:
+    - sF962ZRwSQO0YQKj6K8yWA
+    timeoutMillis: 259200000
+    approvalStateType: USER_GROUP
+    stageName: 'Approval'
+    
