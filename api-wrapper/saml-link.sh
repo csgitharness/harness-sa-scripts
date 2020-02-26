@@ -62,7 +62,7 @@ curl -s 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_
  -H 'referer: https://app.harness.io/' \
  -H 'accept-encoding: gzip, deflate, br' \
  -H 'accept-language: en-US,en;q=0.9' \
-  --data-binary '{"query":"{\n  userGroups(limit:20, offset:0){\n    nodes{\n      id\n      name\n    }\n  }\n}","variables":null}' --compressed > listusergroup.json
+ --data-binary '{"query":"{\n  userGroups(limit:20, offset:0){\n    nodes{\n      id\n      name\n    }\n  }\n}","variables":null}' --compressed > listusergroup.json
 
 
 jq '.data.userGroups.nodes[] | select(.name=="'$USER_GROUP_NAME'")' listusergroup.json > group.json
