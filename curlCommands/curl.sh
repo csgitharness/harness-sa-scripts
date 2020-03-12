@@ -128,4 +128,11 @@ curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'
 --data-binary $'{"query":"mutation($secret: DeleteSecretInput\u0021){\\n  deleteSecret(input:$secret){\\n    clientMutationId\\n  }\\n}","variables":{"secret":{"secretId":"'$SECRETID'","secretType":"ENCRYPTED_TEXT"}}}' --compressed
 }
 
-# 
+# Fetch Application By Name 
+APP_NAME="Rohan"
+func_get_app_by_name(){
+curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'' \
+-H 'x-api-key: '$HARNESS_KEY'' \
+-H 'content-type: application/json' \
+--data-binary '{"query":"{\n  applicationByName(name:\"Rohan\"){\n    name\n    id \n  }\n}","variables":null}' --compressed
+}
