@@ -81,6 +81,7 @@ curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'
 
 
 # Fetch User By Name
+# Returns Name and ID
 USERNAME="captainCanary"
 fn_fetch_user_by_name(){
 curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'' \
@@ -90,3 +91,12 @@ curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'
 }
 
 
+# Fetch UserGroup By Name
+# Returns name, ID
+USERGROUPNAME="Notification"
+fn_fetch_user_group_by_name(){
+curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'' \
+-H 'x-api-key: '$HARNESS_KEY'' \
+-H 'content-type: application/json' \
+--data-binary '{"query":"{\n  userGroupByName(name:\"Notification\"){\n    id\n    name\n  }\n}","variables":null}' --compressed
+}
