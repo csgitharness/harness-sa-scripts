@@ -55,6 +55,14 @@ curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'
 --data-binary $'{"query":"mutation($user: CreateUserInput\u0021){\\n  createUser (input:$user) {\\n\\t\\tclientMutationId\\n  }\\n}","variables":{"user":{"email":"'$USEREMAIL'","name":"'$USERNAME'"}}}' --compressed
 }
 
+# Delete User
+fn_delete_user(){
+USERID="fsyzR55DSPuz7UG1lki3eQ"
+curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'' \
+-H 'x-api-key: '$HARNESS_KEY'' \
+-H 'content-type: application/json' \
+--data-binary $'{"query":"mutation($deleteUser: DeleteUserInput\u0021){\\n  deleteUser(input: $deleteUser){\\n    clientMutationId\\n  }\\n}","variables":{"deleteUser":{"id":"'$USERID'"}}}' --compressed
+}
 
 # Update UserGroup 
 USERID="fsyzR55DSPuz7UG1lki3eQ"
