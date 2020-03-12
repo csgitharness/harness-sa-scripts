@@ -13,7 +13,6 @@ curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'
 }
 
 
-
 # Delete Application 
 APP_ID="uP22_SFwTHe_-qYwzkm9mA"
 fn_delete_app(){
@@ -100,3 +99,25 @@ curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'
 -H 'content-type: application/json' \
 --data-binary '{"query":"{\n  userGroupByName(name:\"Notification\"){\n    id\n    name\n  }\n}","variables":null}' --compressed
 }
+
+# Create Secret - Encrypted Text
+SECRETNAME="Sampler"
+SECRETVALUE="ThisISTheVAlue"
+fn_create_secret(){
+curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'' \
+-H 'x-api-key: '$HARNESS_KEY'' \
+-H 'content-type: application/json' \
+--data-binary $'{"query":"mutation($secret: CreateSecretInput\u0021){\\n  createSecret(input: $secret){\\n    clientMutationId\\n    secret{\\n      name\\n      id\\n      secretType\\n    }\\n  }\\n}","variables":{"secret":{"secretType":"ENCRYPTED_TEXT","encryptedText":{"value":"'$SECRETVALUE'","name":"'$SECRETNAME'"},"clientMutationId":""}}}' --compressed
+}
+
+
+# Delete Secret - Encrypted Text
+SECRETID="LPusNePLTnSxD9N7QZou-Q"
+func_delete_secret(){
+curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'' \
+-H 'x-api-key: '$HARNESS_KEY'' \
+-H 'content-type: application/json' \
+--data-binary $'{"query":"mutation($secret: DeleteSecretInput\u0021){\\n  deleteSecret(input:$secret){\\n    clientMutationId\\n  }\\n}","variables":{"secret":{"secretId":"'$SECRETID'","secretType":"ENCRYPTED_TEXT"}}}' --compressed
+}
+
+# 
