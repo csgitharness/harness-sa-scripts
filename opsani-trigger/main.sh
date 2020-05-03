@@ -53,7 +53,7 @@ done
 
 ### MAIN
 
-if [ $# -lt 4 ]; then
+if [ $# -lt 2 ]; then
 echo "ERROR: Not enough arguments"
 echo "Usage: ./main.sh <cpuVal> <memVal> <APP_NAME>"
 exit 0
@@ -62,23 +62,23 @@ fi
 if [ -d "Setup" ]; then 
     CPU=$1
     MEM=$2
-    APP_NAME=$3
-	REPO_URL=$4
+	#     APP_NAME=$3
+	# REPO_URL=$4
 	
-	echo "Cloning Repo"
-	clone
-	
-	echo "INFO: Navigating to Trigger YML"
-    fn_nav_trigger
+ # echo "Cloning Repo"
+# 	clone
+#
+# 	echo "INFO: Navigating to Trigger YML"
+#     fn_nav_trigger
 	
 	echo "Manipulating the cpu"
-	fn_mainpulate_cpu
-	
+	fn_mainpulate_cpu $1
+	#
 	echo "Manipulating Memory"
-	fn_mainpulate_memory
+	fn_mainpulate_memory $2
 	
-	echo "Commiting to GitHub"
-	commit
+	# echo "Commiting to GitHub"
+	# commit
 	
 else 
   echo "ERROR: No Setup Directory Found"
