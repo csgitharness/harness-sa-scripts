@@ -5,9 +5,10 @@
 CPU=$1 
 MEMORY=$2 
 APP_NAME=$3
+REPO_URL=$4
 
 clone(){
-	
+	git clone $4
 }
 
 
@@ -52,7 +53,7 @@ done
 
 ### MAIN
 
-if [ $# -lt 3 ]; then
+if [ $# -lt 4 ]; then
 echo "ERROR: Not enough arguments"
 echo "Usage: ./main.sh <cpuVal> <memVal> <APP_NAME>"
 exit 0
@@ -62,7 +63,10 @@ if [ -d "Setup" ]; then
     CPU=$1
     MEM=$2
     APP_NAME=$3
+	REPO_URL=$4
 	
+	echo "Cloning Repo"
+	clone
 	
 	echo "INFO: Navigating to Trigger YML"
     fn_nav_trigger
