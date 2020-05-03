@@ -145,3 +145,6 @@ curl 'https://app.harness.io/gateway/api/graphql?accountId='$HARNESS_ACCOUNT_ID'
 -H 'content-type: application/json' \
 --data-binary '{"query":"query{\n  secretByName(name:\"'$SECRETNAME'\", secretType:ENCRYPTED_TEXT){\n    ... on EncryptedText{\n      id\n      name     \n      }\n    }\n}\n","variables":null}' --compressed
 }
+
+
+
